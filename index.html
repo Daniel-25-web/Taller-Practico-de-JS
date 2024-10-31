@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas de Funciones JavaScript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Pruebas de Funciones JavaScript</h1>
+
+        <!-- Ejercicio 1: Año Bisiesto -->
+        <div class="mb-4">
+            <h3>Año Bisiesto</h3>
+            <input type="number" id="yearInput" class="form-control" placeholder="Introduce un año" required>
+            <button class="btn btn-primary mt-2" onclick="testLeapYear()">Comprobar</button>
+            <div id="leapYearResult" class="result"></div>
+        </div>
+
+        <!-- Ejercicio 2: Celsius a Fahrenheit -->
+        <div class="mb-4">
+            <h3>Celsius a Fahrenheit</h3>
+            <input type="number" id="celsiusInput" class="form-control" placeholder="Introduce grados Celsius" required>
+            <button class="btn btn-primary mt-2" onclick="testCelsiusToFahrenheit()">Convertir</button>
+            <div id="celsiusResult" class="result"></div>
+        </div>
+
+        <!-- Ejercicio 3: Mayor de dos números -->
+        <div class="mb-4">
+            <h3>Mayor de Dos Números</h3>
+            <input type="number" id="num1" class="form-control" placeholder="Número 1" required>
+            <input type="number" id="num2" class="form-control mt-2" placeholder="Número 2" required>
+            <button class="btn btn-primary mt-2" onclick="testMaxOfTwo()">Encontrar Mayor</button>
+            <div id="maxResult" class="result"></div>
+        </div>
+
+        <!-- Ejercicio 4: Convertir minutos -->
+        <div class="mb-4">
+            <h3>Convertir Minutos</h3>
+            <input type="number" id="minutesInput" class="form-control" placeholder="Introduce minutos" required>
+            <button class="btn btn-primary mt-2" onclick="testConvertMinutes()">Convertir</button>
+            <div id="minutesResult" class="result"></div>
+        </div>
+
+        <!-- Ejercicio 5: En Rango -->
+        <div class="mb-4">
+            <h3>¿Está en Rango?</h3>
+            <input type="number" id="numberInput" class="form-control" placeholder="Número" required>
+            <input type="number" id="startInput" class="form-control mt-2" placeholder="Inicio del rango" required>
+            <input type="number" id="endInput" class="form-control mt-2" placeholder="Fin del rango" required>
+            <button class="btn btn-primary mt-2" onclick="testInRange()">Comprobar</button>
+            <div id="rangeResult" class="result"></div>
+        </div>
+
+        <!-- Ejercicio 6: Precio Final -->
+        <div class="mb-4">
+            <h3>Calcular Precio Final</h3>
+            <input type="number" id="initialPrice" class="form-control" placeholder="Precio Inicial" required>
+            <input type="number" id="discount" class="form-control mt-2" placeholder="Descuento (%)" required>
+            <button class="btn btn-primary mt-2" onclick="testFinalPrice()">Calcular</button>
+            <div id="finalPriceResult" class="result"></div>
+        </div>
+
+        <!-- Ejercicio 7: Puede Votar -->
+        <div class="mb-4">
+            <h3>¿Puede Votar?</h3>
+            <input type="number" id="ageInput" class="form-control" placeholder="Introduce tu edad" required>
+            <button class="btn btn-primary mt-2" onclick="testCanVote()">Comprobar</button>
+            <div id="voteResult" class="result"></div>
+        </div>
+
+        <!-- Ejercicio 8: Área del Triángulo -->
+        <div class="mb-4">
+            <h3>Calcular Área del Triángulo</h3>
+            <input type="number" id="baseInput" class="form-control" placeholder="Base" required>
+            <input type="number" id="heightInput" class="form-control mt-2" placeholder="Altura" required>
+            <button class="btn btn-primary mt-2" onclick="testTriangleArea()">Calcular Área</button>
+            <div id="areaResult" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function esBisiesto(ano) {
+            return (ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0);
+        }
+
+        function celsiusAFahrenheit(celsius) {
+            return (celsius * 9 / 5) + 32;
+        }
+
+        function mayorDeDos(n1, n2) {
+            return n1 > n2 ? n1 : n2;
+        }
+
+        function convertirMinutos(minutos) {
+            const horas = Math.floor(minutos / 60);
+            const restosMinutos = minutos % 60;
+            return `${horas} horas y ${restosMinutos} minutos`;
+        }
+
+        function estaEnRango(numero, inicio, fin) {
+            return numero >= inicio && numero <= fin;
+        }
+
+        function calcularPrecioFinal(precioInicial, descuento) {
+            return precioInicial - (precioInicial * (descuento / 100));
+        }
+
+        function puedeVotar(edad) {
+            return edad >= 18;
+        }
+
+        function calcularAreaTriangulo(base, altura) {
+            return (base * altura) / 2;
+        }
+
+        function testLeapYear() {
+            const year = parseInt(document.getElementById('yearInput').value);
+            const result = esBisiesto(year);
+            document.getElementById('leapYearResult').textContent = `¿El año ${year} es bisiesto? ${result ? 'Verdadero' : 'Falso'}`;
+        }
+
+        function testCelsiusToFahrenheit() {
+            const celsius = parseFloat(document.getElementById('celsiusInput').value);
+            const result = celsiusAFahrenheit(celsius);
+            document.getElementById('celsiusResult').textContent = `${celsius}°C es igual a ${result}°F`;
+        }
+
+        function testMaxOfTwo() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const result = mayorDeDos(num1, num2);
+            document.getElementById('maxResult').textContent = `El mayor de ${num1} y ${num2} es ${result}`;
+        }
+
+        function testConvertMinutes() {
+            const minutes = parseInt(document.getElementById('minutesInput').value);
+            const result = convertirMinutos(minutes);
+            document.getElementById('minutesResult').textContent = `${minutes} minutos son ${result}`;
+        }
+
+        function testInRange() {
+            const number = parseInt(document.getElementById('numberInput').value);
+            const start = parseInt(document.getElementById('startInput').value);
+            const end = parseInt(document.getElementById('endInput').value);
+            const result = estaEnRango(number, start, end);
+            document.getElementById('rangeResult').textContent = `¿El número ${number} está en el rango [${start}, ${end}]? ${result ? 'Verdadero' : 'Falso'}`;
+        }
+
+        function testFinalPrice() {
+            const initialPrice = parseFloat(document.getElementById('initialPrice').value);
+            const discount = parseFloat(document.getElementById('discount').value);
+            const result = calcularPrecioFinal(initialPrice, discount);
+            document.getElementById('finalPriceResult').textContent = `El precio final es: $${result.toFixed(2)}`;
+        }
+
+        function testCanVote() {
+            const age = parseInt(document.getElementById('ageInput').value);
+            const result = puedeVotar(age);
+            document.getElementById('voteResult').textContent = `¿La persona de ${age} años puede votar? ${result ? 'Verdadero' : 'Falso'}`;
+        }
+
+        function testTriangleArea() {
+            const base = parseFloat(document.getElementById('baseInput').value);
+            const height = parseFloat(document.getElementById('heightInput').value);
+            const result = calcularAreaTriangulo(base, height);
+            document.getElementById('areaResult').textContent = `El área del triángulo es: ${result}`;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
